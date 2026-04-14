@@ -3,28 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Booking System - MySQL</title>
+    <title>BusTicket Express - Static Demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; }
-        .nav-tabs .nav-link.active {
-    background-color: #5577e6 !important;  /* Change this color */
-    color: white !important;
-    border-color: #5577e6 !important;
-}
-
-.nav-tabs .nav-link {
-    color: #333 !important;  /* Inactive tab text color */
-}
-
-.nav-tabs .nav-link:hover {
-    background-color: #b4d0fa !important;  /* Hover color */
-    border-color: #b4d0fa !important;
-}
+        .nav-tabs .nav-link.active { background-color: #5577e6 !important; color: white !important; border-color: #5577e6 !important; }
+        .nav-tabs .nav-link { color: #333 !important; }
+        .nav-tabs .nav-link:hover { background-color: #b4d0fa !important; border-color: #b4d0fa !important; }
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; }
-        .section { padding: 60px 0; }
         .bus-card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s; height: 100%; }
         .bus-card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.15); }
         .bus-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
@@ -38,23 +26,19 @@
         .toast-notification { position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px; }
         .db-status { background: #28a745; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; }
         #myBookings, #adminPanel { display: none; }
-        
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#" onclick="showSection('home')">
-                <i class="bi bi-bus-front-fill"></i> BusTicket Express
-                <span class="db-status"><i class="bi bi-database"></i> MySQL</span>
+                <i class="bi bi-bus-front-fill"></i> BusTicket Express 
+                <span class="db-status"><i class="bi bi-database"></i> Static Demo</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('home')"><i class="bi bi-house-door"></i> Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('buses')"><i class="bi bi-bus-front"></i> Available Buses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('buses')"><i class="bi bi-bus-front"></i> Buses</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('bookings')"><i class="bi bi-ticket-perforated"></i> My Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('admin')"><i class="bi bi-shield-lock"></i> Admin</a></li>
                 </ul>
@@ -71,11 +55,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <h1 class="display-4 fw-bold mb-4">Book Your Bus Ticket <span style="color: #ffd700;">Easily</span></h1>
-                        <p class="lead mb-4">Travel comfortably with our premium bus services.</br>
-                        <b>Your Journy Our Passion.</b></p>
-                        <button class="btn btn-light btn-lg" onclick="showSection('buses')">
-                            View Available Buses <i class="bi bi-arrow-right"></i>
-                        </button>
+                        <p class="lead mb-4">Travel comfortably with our premium bus services.<br><b>Your Journey, Our Passion.</b></p>
+                        <button class="btn btn-light btn-lg" onclick="showSection('buses')">View Available Buses <i class="bi bi-arrow-right"></i></button>
                     </div>
                     <div class="col-lg-6 text-center">
                         <i class="bi bi-bus-front" style="font-size: 200px;"></i>
@@ -89,21 +70,21 @@
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
                         <i class="bi bi-bus-front" style="font-size: 3rem; color: #007bff;"></i>
-                        <div class="stats-number" id="totalBuses">0</div>
+                        <div class="stats-number" id="totalBuses">6</div>
                         <div>Total Buses</div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
                         <i class="bi bi-database" style="font-size: 3rem; color: #28a745;"></i>
-                        <div class="stats-number" id="dbStatus">✓</div>
-                        <div>Database Status</div>
+                        <div class="stats-number">✓</div>
+                        <div>Demo Mode</div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="stats-card">
                         <i class="bi bi-people" style="font-size: 3rem; color: #ffc107;"></i>
-                        <div class="stats-number" id="totalSeats">0</div>
+                        <div class="stats-number" id="totalSeats">246</div>
                         <div>Available Seats</div>
                     </div>
                 </div>
@@ -120,16 +101,10 @@
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#businessBuses">Business Class</a></li>
                 <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#acBuses">AC Buses</a></li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="allBuses">
-                    <div class="row mt-4" id="allBusesContainer"></div>
-                </div>
-                <div class="tab-pane fade" id="businessBuses">
-                    <div class="row mt-4" id="businessBusesContainer"></div>
-                </div>
-                <div class="tab-pane fade" id="acBuses">
-                    <div class="row mt-4" id="acBusesContainer"></div>
-                </div>
+            <div class="tab-content mt-4">
+                <div class="tab-pane fade show active" id="allBuses"><div class="row" id="allBusesContainer"></div></div>
+                <div class="tab-pane fade" id="businessBuses"><div class="row" id="businessBusesContainer"></div></div>
+                <div class="tab-pane fade" id="acBuses"><div class="row" id="acBusesContainer"></div></div>
             </div>
         </div>
     </div>
@@ -141,12 +116,12 @@
             <div class="row mb-4">
                 <div class="col-md-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="searchBookingInput" placeholder="Enter Booking ID or Phone Number">
-                        <button class="btn btn-primary" onclick="searchBookings()"><i class="bi bi-search"></i> Search</button>
+                        <input type="text" class="form-control" id="searchBookingInput" placeholder="Booking ID or Phone Number">
+                        <button class="btn btn-primary" onclick="searchBookings()">Search</button>
                     </div>
                 </div>
             </div>
-            <div id="bookingsList"><p class="text-muted text-center">Enter your booking details to view</p></div>
+            <div id="bookingsList"><p class="text-muted text-center">No bookings yet. Book a ticket first!</p></div>
         </div>
     </div>
 
@@ -154,6 +129,7 @@
     <div id="adminSection" style="display: none;">
         <div class="container section">
             <h2 class="mb-4"><i class="bi bi-shield-lock"></i> Admin Panel</h2>
+            
             <div id="adminLoginForm">
                 <div class="row">
                     <div class="col-md-4 mx-auto">
@@ -161,92 +137,53 @@
                             <div class="card-body">
                                 <h5 class="card-title">Admin Login</h5>
                                 <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="adminPasswordInput">
+                                    <label class="form-label">Password (default: admin123)</label>
+                                    <input type="password" class="form-control" id="adminPasswordInput" value="admin123">
                                 </div>
                                 <button class="btn btn-primary w-100" onclick="adminLogin()">Login</button>
-                                <button class="btn btn-link w-100 mt-2" onclick="setupAdmin()">Setup New Password</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div id="adminDashboard" style="display: none;">
                 <div class="row mb-4">
-                    <div class="col-md-4 mb-3">
-                        <div class="stats-card">
-                            <div class="stats-number" id="adminTotalBuses">0</div>
-                            <div>Total Buses</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="stats-card">
-                            <div class="stats-number" id="adminTotalBookings">0</div>
-                            <div>Total Bookings</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="stats-card">
-                            <div class="stats-number" id="adminTotalRevenue">0</div>
-                            <div>Total Revenue</div>
+                    <div class="col-md-4 mb-3"><div class="stats-card"><div class="stats-number" id="adminTotalBuses">0</div><div>Total Buses</div></div></div>
+                    <div class="col-md-4 mb-3"><div class="stats-card"><div class="stats-number" id="adminTotalBookings">0</div><div>Total Bookings</div></div></div>
+                    <div class="col-md-4 mb-3"><div class="stats-card"><div class="stats-number" id="adminTotalRevenue">0</div><div>Total Revenue</div></div></div>
+                </div>
+
+                <!-- Manage Buses -->
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white"><h5><i class="bi bi-gear"></i> Manage Buses</h5></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead><tr><th>Bus #</th><th>Name</th><th>Route</th><th>Type</th><th>Seats</th><th>Actions</th></tr></thead>
+                                <tbody id="manageBusesTable"></tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <!-- Manage Existing Buses Card -->
-<div class="card mb-4">
-    <div class="card-header bg-info text-white">
-        <h5><i class="bi bi-gear"></i> Manage Existing Buses</h5>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Bus #</th>
-                        <th>Bus Name</th>
-                        <th>Route</th>
-                        <th>Type</th>
-                        <th>Seats</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="manageBusesTable">
-                    <tr>
-                        <td colspan="7" class="text-center">Loading buses...</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h6 class="mb-0"><i class="bi bi-list"></i> Bus List</h6>
-    <button class="btn btn-sm btn-outline-primary" onclick="loadManageBusesTable()">
-        <i class="bi bi-arrow-clockwise"></i> Refresh
-    </button>
-</div>
 
+                <!-- Add New Bus -->
                 <div class="card mb-4">
                     <div class="card-header"><h5><i class="bi bi-plus-circle"></i> Add New Bus</h5></div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2 mb-2"><input type="number" class="form-control" id="newBusNo" placeholder="Bus Number"></div>
-                            <div class="col-md-2 mb-2"><input type="text" class="form-control" id="newBusName" placeholder="Bus Name"></div>
-                            <div class="col-md-2 mb-2"><input type="text" class="form-control" id="newBusRoute" placeholder="Route"></div>
-                            <div class="col-md-2 mb-2">
-                                <select class="form-control" id="newBusType">
-                                    <option value="BUSINESS">Business</option>
-                                    <option value="AC">AC</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2 mb-2"><input type="number" class="form-control" id="newBusSeats" placeholder="Total Seats"></div>
-                            <div class="col-md-2 mb-2"><input type="number" class="form-control" id="newBusRent" placeholder="Rent"></div>
+                        <div class="row g-2">
+                            <div class="col-md-2"><input type="number" class="form-control" id="newBusNo" placeholder="Bus No"></div>
+                            <div class="col-md-3"><input type="text" class="form-control" id="newBusName" placeholder="Bus Name"></div>
+                            <div class="col-md-3"><input type="text" class="form-control" id="newBusRoute" placeholder="Route"></div>
+                            <div class="col-md-2"><select class="form-control" id="newBusType"><option value="BUSINESS">Business</option><option value="AC">AC</option></select></div>
+                            <div class="col-md-1"><input type="number" class="form-control" id="newBusSeats" placeholder="Seats"></div>
+                            <div class="col-md-1"><input type="number" class="form-control" id="newBusRent" placeholder="Rent"></div>
                         </div>
-                        <button class="btn btn-primary" onclick="addNewBus()">Add Bus</button>
+                        <button class="btn btn-primary mt-3" onclick="addNewBus()">Add Bus</button>
                     </div>
                 </div>
-                <button class="btn btn-danger" onclick="adminLogout()"><i class="bi bi-box-arrow-right"></i> Logout</button>
+
+                <button class="btn btn-danger" onclick="adminLogout()">Logout</button>
             </div>
         </div>
     </div>
@@ -256,29 +193,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title"><i class="bi bi-ticket-perforated"></i> Book Your Ticket</h5>
+                    <h5 class="modal-title">Book Ticket</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="selectedBusNo">
                     <input type="hidden" id="selectedBusRent">
                     <div class="alert alert-info" id="busDetailsAlert"></div>
-                    <div class="mb-3">
-                        <label class="form-label">Full Name *</label>
-                        <input type="text" class="form-control" id="passengerName">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Phone Number *</label>
-                        <input type="tel" class="form-control" id="passengerPhone">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Number of Seats(Maximum 4 Seats) *</label>
-                        <input type="number" class="form-control" id="seatsBooked" min="1" max="4">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Total Amount</label>
-                        <div id="totalAmount" class="h4 text-primary">৳</div>
-                    </div>
+                    <div class="mb-3"><label>Full Name *</label><input type="text" class="form-control" id="passengerName"></div>
+                    <div class="mb-3"><label>Phone Number *</label><input type="tel" class="form-control" id="passengerPhone"></div>
+                    <div class="mb-3"><label>Seats (max 4) *</label><input type="number" class="form-control" id="seatsBooked" min="1" max="4"></div>
+                    <div class="mb-3"><label>Total Amount</label><div id="totalAmount" class="h4 text-primary">৳ 0</div></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -290,54 +215,77 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // ==================== DATA & STORAGE ====================
+        let buses = [];
+        let bookings = [];
         let adminLoggedIn = false;
-        
+        const ADMIN_PASSWORD = "admin123";
+
+        function loadData() {
+            const savedBuses = localStorage.getItem('buses');
+            const savedBookings = localStorage.getItem('bookings');
+
+            if (savedBuses) buses = JSON.parse(savedBuses);
+            else {
+                buses = [
+                    {bus_no:1001, bus_name:"AFM Express", route:"Dhaka - Rangpur", bus_type:"BUSINESS", total_seats:40, available_seats:40, rent:800},
+                    {bus_no:1002, bus_name:"Lemon Line", route:"Dhaka - Cox-Bazzer", bus_type:"BUSINESS", total_seats:35, available_seats:35, rent:1000},
+                    {bus_no:1003, bus_name:"S.N.Express", route:"Dhaka - Satkhira", bus_type:"BUSINESS", total_seats:45, available_seats:45, rent:650},
+                    {bus_no:2001, bus_name:"Beach Voyager", route:"Dhaka-Cox Bazar", bus_type:"AC", total_seats:42, available_seats:42, rent:2600},
+                    {bus_no:2002, bus_name:"Mountain Express", route:"Dhaka-Rangamati", bus_type:"AC", total_seats:42, available_seats:42, rent:1800},
+                    {bus_no:2003, bus_name:"S.N.Express", route:"Dhaka-Satkhira", bus_type:"AC", total_seats:42, available_seats:42, rent:1200}
+                ];
+                saveData();
+            }
+
+            if (savedBookings) bookings = JSON.parse(savedBookings);
+        }
+
+        function saveData() {
+            localStorage.setItem('buses', JSON.stringify(buses));
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+        }
+
+        function showToast(message, type = 'success') {
+            const colors = {success: 'bg-success', error: 'bg-danger', warning: 'bg-warning'};
+            const toast = document.createElement('div');
+            toast.className = `toast show ${colors[type]} text-white`;
+            toast.innerHTML = `<div class="toast-body">${message}</div>`;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
         function showSection(section) {
             document.getElementById('homeSection').style.display = section === 'home' ? 'block' : 'none';
             document.getElementById('busesSection').style.display = section === 'buses' ? 'block' : 'none';
             document.getElementById('bookingsSection').style.display = section === 'bookings' ? 'block' : 'none';
             document.getElementById('adminSection').style.display = section === 'admin' ? 'block' : 'none';
-            
+
             if (section === 'buses') loadBuses();
             if (section === 'home') loadStats();
+            if (section === 'bookings') searchBookings();
+            if (section === 'admin' && adminLoggedIn) loadAdminDashboard();
         }
-        
-        async function loadStats() {
-            try {
-                const response = await fetch('/api/buses');
-                const buses = await response.json();
-                const totalSeats = buses.reduce((sum, b) => sum + b.available_seats, 0);
-                document.getElementById('totalBuses').textContent = buses.length;
-                document.getElementById('totalSeats').textContent = totalSeats;
-                
-                // Check DB connection
-                const dbRes = await fetch('/api/health');
-                const dbData = await dbRes.json();
-                document.getElementById('dbStatus').textContent = dbData.database === 'connected' ? '✓' : '✗';
-            } catch (error) {
-                console.error('Error:', error);
-            }
+
+        function loadStats() {
+            const totalSeats = buses.reduce((sum, b) => sum + b.available_seats, 0);
+            document.getElementById('totalBuses').textContent = buses.length;
+            document.getElementById('totalSeats').textContent = totalSeats;
         }
-        
-        async function loadBuses() {
-            try {
-                const response = await fetch('/api/buses');
-                const buses = await response.json();
-                displayBuses(buses.filter(b => b.available_seats >= 0), 'allBusesContainer');
-                displayBuses(buses.filter(b => b.bus_type === 'BUSINESS' && b.available_seats >= 0), 'businessBusesContainer');
-                displayBuses(buses.filter(b => b.bus_type === 'AC' && b.available_seats >= 0), 'acBusesContainer');
-            } catch (error) {
-                showToast('Error loading buses', 'error');
-            }
+
+        function loadBuses() {
+            displayBuses(buses, 'allBusesContainer');
+            displayBuses(buses.filter(b => b.bus_type === 'BUSINESS'), 'businessBusesContainer');
+            displayBuses(buses.filter(b => b.bus_type === 'AC'), 'acBusesContainer');
         }
-        
-        function displayBuses(buses, containerId) {
+
+        function displayBuses(busList, containerId) {
             const container = document.getElementById(containerId);
-            if (buses.length === 0) {
+            if (busList.length === 0) {
                 container.innerHTML = '<p class="text-muted">No buses available</p>';
                 return;
             }
-            container.innerHTML = buses.map(bus => `
+            container.innerHTML = busList.map(bus => `
                 <div class="col-md-6 col-lg-4">
                     <div class="bus-card">
                         <div class="d-flex justify-content-between">
@@ -353,7 +301,7 @@
                 </div>
             `).join('');
         }
-        
+
         function openBookingModal(bus) {
             document.getElementById('selectedBusNo').value = bus.bus_no;
             document.getElementById('selectedBusRent').value = bus.rent;
@@ -361,345 +309,198 @@
             document.getElementById('seatsBooked').max = Math.min(4, bus.available_seats);
             new bootstrap.Modal(document.getElementById('bookingModal')).show();
         }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('seatsBooked').addEventListener('input', function() {
-                const seats = parseInt(this.value) || 0;
+
+        // Update total amount live
+        document.addEventListener('DOMContentLoaded', () => {
+            const seatsInput = document.getElementById('seatsBooked');
+            seatsInput.addEventListener('input', () => {
+                const seats = parseInt(seatsInput.value) || 0;
                 const rent = parseInt(document.getElementById('selectedBusRent').value) || 0;
                 document.getElementById('totalAmount').textContent = 'BDT ' + (seats * rent);
             });
+            loadData();
+            showSection('home');
         });
-        
-        async function confirmBooking() {
-            const data = {
-                bus_no: parseInt(document.getElementById('selectedBusNo').value),
-                passenger_name: document.getElementById('passengerName').value,
-                passenger_phone: document.getElementById('passengerPhone').value,
-                seats_booked: parseInt(document.getElementById('seatsBooked').value)
-            };
-            
-            if (!data.passenger_name || !data.passenger_phone || data.seats_booked < 1) {
+
+        function confirmBooking() {
+            const busNo = parseInt(document.getElementById('selectedBusNo').value);
+            const rent = parseInt(document.getElementById('selectedBusRent').value);
+            const seats = parseInt(document.getElementById('seatsBooked').value);
+            const name = document.getElementById('passengerName').value.trim();
+            const phone = document.getElementById('passengerPhone').value.trim();
+
+            if (!name || !phone || !seats || seats < 1) {
                 showToast('Please fill all fields', 'warning');
                 return;
             }
-            
-            try {
-                const response = await fetch('/api/bookings', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
-                });
-                const result = await response.json();
-                if (response.ok) {
-                    showToast(`Booking Confirmed! ID: ${result.booking_id}`, 'success');
-                    bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
-                    loadBuses();
-                } else {
-                    showToast(result.error, 'error');
-                }
-            } catch (error) {
-                showToast('Network error', 'error');
+
+            const bus = buses.find(b => b.bus_no === busNo);
+            if (!bus || bus.available_seats < seats) {
+                showToast('Not enough seats available', 'error');
+                return;
             }
+
+            const total = seats * rent;
+            const bookingId = Date.now();
+
+            bookings.push({
+                booking_id: bookingId,
+                bus_no: busNo,
+                bus_name: bus.bus_name,
+                route: bus.route,
+                passenger_name: name,
+                passenger_phone: phone,
+                seats_booked: seats,
+                total_amount: total,
+                booking_date: new Date().toISOString(),
+                status: 'CONFIRMED'
+            });
+
+            bus.available_seats -= seats;
+            saveData();
+            showToast(`Booking Confirmed! ID: ${bookingId}`, 'success');
+            bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
+            loadBuses();
         }
-        
-        async function searchBookings() {
-            const query = document.getElementById('searchBookingInput').value;
-            if (!query) return;
-            
-            try {
-                const response = await fetch(`/api/bookings/search?q=${query}`);
-                const bookings = await response.json();
-                const container = document.getElementById('bookingsList');
-                
-                if (bookings.length === 0) {
-                    container.innerHTML = '<p class="text-muted text-center">No bookings found</p>';
-                    return;
-                }
-                
-                container.innerHTML = bookings.map(b => `
-                    <div class="booking-card">
-                        <div class="d-flex justify-content-between">
-                            <h6>Booking ID: ${b.booking_id}</h6>
-                            <span class="badge bg-${b.status === 'CONFIRMED' ? 'success' : 'danger'}">${b.status}</span>
-                        </div>
-                        <p><strong>Bus:</strong> ${b.bus_name} (#${b.bus_no})</p>
-                        <p><strong>Passenger:</strong> ${b.passenger_name} | ${b.passenger_phone}</p>
-                        <p><strong>Seats:</strong> ${b.seats_booked} | <strong>Amount:</strong> BDT ${b.total_amount}</p>
-                        ${b.status === 'CONFIRMED' ? `<button class="btn btn-danger btn-sm" onclick="cancelBooking(${b.booking_id})">Cancel</button>` : ''}
+
+        function searchBookings() {
+            const query = document.getElementById('searchBookingInput').value.toLowerCase().trim();
+            const filtered = query ? bookings.filter(b => 
+                b.booking_id.toString().includes(query) || 
+                b.passenger_phone.toLowerCase().includes(query)
+            ) : bookings;
+
+            const container = document.getElementById('bookingsList');
+            if (filtered.length === 0) {
+                container.innerHTML = '<p class="text-muted text-center">No bookings found</p>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(b => `
+                <div class="booking-card">
+                    <div class="d-flex justify-content-between">
+                        <h6>Booking ID: ${b.booking_id}</h6>
+                        <span class="badge bg-${b.status === 'CONFIRMED' ? 'success' : 'danger'}">${b.status}</span>
                     </div>
-                `).join('');
-            } catch (error) {
-                showToast('Error searching', 'error');
-            }
+                    <p><strong>Bus:</strong> ${b.bus_name} (#${b.bus_no}) - ${b.route}</p>
+                    <p><strong>Passenger:</strong> ${b.passenger_name} | ${b.passenger_phone}</p>
+                    <p><strong>Seats:</strong> ${b.seats_booked} | <strong>Amount:</strong> BDT ${b.total_amount}</p>
+                    ${b.status === 'CONFIRMED' ? `<button class="btn btn-danger btn-sm" onclick="cancelBooking(${b.booking_id})">Cancel Booking</button>` : ''}
+                </div>
+            `).join('');
         }
-        
-        async function cancelBooking(id) {
-            if (!confirm('Cancel this booking?')) return;
-            try {
-                await fetch(`/api/bookings/${id}/cancel`, {method: 'POST'});
-                showToast('Booking cancelled', 'success');
+
+        function cancelBooking(bookingId) {
+            if (!confirm('Cancel this booking? Seats will be refunded.')) return;
+
+            const booking = bookings.find(b => b.booking_id === bookingId);
+            if (booking && booking.status === 'CONFIRMED') {
+                booking.status = 'CANCELLED';
+                const bus = buses.find(b => b.bus_no === booking.bus_no);
+                if (bus) bus.available_seats += booking.seats_booked;
+                saveData();
+                showToast('Booking cancelled successfully', 'success');
                 searchBookings();
                 loadBuses();
-            } catch (error) {
-                showToast('Error cancelling', 'error');
             }
         }
-        
-        async function setupAdmin() {
-            const password = prompt('Enter new admin password (min 6 chars):');
-            if (!password || password.length < 6) return;
-            try {
-                await fetch('/api/admin/setup', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({password})
-                });
-                showToast('Admin setup complete', 'success');
-            } catch (error) {
-                showToast('Setup failed', 'error');
-            }
-        }
-        
-        async function adminLogin() {
+
+        function adminLogin() {
             const password = document.getElementById('adminPasswordInput').value;
-            try {
-                const res = await fetch('/api/admin/login', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({password})
-                });
-                if (res.ok) {
-                    adminLoggedIn = true;
-                    document.getElementById('adminLoginForm').style.display = 'none';
-                    document.getElementById('adminDashboard').style.display = 'block';
-                    loadAdminDashboard();
-                    loadManageBusesTable();
-                } else {
-                    showToast('Invalid password', 'error');
-                }
-            } catch (error) {
-                showToast('Login failed', 'error');
+            if (password === ADMIN_PASSWORD) {
+                adminLoggedIn = true;
+                document.getElementById('adminLoginForm').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAdminDashboard();
+            } else {
+                showToast('Invalid password', 'error');
             }
         }
-        
-// Load buses into management table
-async function loadManageBusesTable() {
-    try {
-        const response = await fetch('/api/buses');
-        const buses = await response.json();
-        
-        const tbody = document.getElementById('manageBusesTable');
-        
-        if (buses.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No buses found</td></tr>';
-            return;
-        }
-        
-        tbody.innerHTML = buses.map(bus => {
-            const seatStatus = bus.available_seats === bus.total_seats ? 'full' : 
-                              (bus.available_seats === 0 ? 'empty' : 'partial');
-            
-            const statusBadge = {
-                'full': '<span class="badge bg-success">Empty</span>',
-                'empty': '<span class="badge bg-danger">Full</span>',
-                'partial': '<span class="badge bg-warning">Partial</span>'
-            }[seatStatus];
-            
-            return `
-                <tr>
-                    <td><strong>#${bus.bus_no}</strong></td>
-                    <td>${bus.bus_name}</td>
-                    <td>${bus.route}</td>
-                    <td>
-                        <span class="badge ${bus.bus_type === 'AC' ? 'bg-success' : 'bg-primary'}">
-                            ${bus.bus_type}
-                        </span>
-                    </td>
-                    <td>
-                        <strong>${bus.available_seats}</strong> / ${bus.total_seats}
-                    </td>
-                    <td>${statusBadge}</td>
-                    <td>
-                        <button class="btn btn-sm btn-warning" 
-                                onclick="resetSingleBus(${bus.bus_no}, '${bus.bus_name}', ${bus.total_seats})"
-                                ${bus.available_seats === bus.total_seats ? 'disabled' : ''}>
-                            <i class="bi bi-arrow-repeat"></i> Reset
-                        </button>
-                        <button class="btn btn-sm btn-danger ms-1" 
-                                onclick="deleteBus(${bus.bus_no}, '${bus.bus_name}')">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `;
-        }).join('');
-        
-    } catch (error) {
-        console.error('Error loading buses:', error);
-        showToast('Error loading buses', 'error');
-    }
-}
 
-// Reset a single bus
-async function resetSingleBus(busNo, busName, totalSeats) {
-    if (!confirm(`Reset Bus #${busNo} (${busName}) to ${totalSeats} available seats?`)) {
-        return;
-    }
-    
-    try {
-        const response = await fetch(`/api/admin/reset-bus/${busNo}`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'}
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            showToast(result.message, 'success');
-            loadManageBusesTable();  // Refresh the table
-            loadAdminDashboard();     // Refresh stats
-            loadBuses();              // Refresh bus listings
-        } else {
-            showToast(result.error || 'Failed to reset bus', 'error');
-        }
-    } catch (error) {
-        showToast('Network error', 'error');
-    }
-}
-
-// Delete a bus (only if no active bookings)
-async function deleteBus(busNo, busName) {
-    if (!confirm(`Are you sure you want to delete Bus #${busNo} (${busName})?\nThis action cannot be undone!`)) {
-        return;
-    }
-    
-    try {
-        const response = await fetch(`/api/buses/${busNo}`, {
-            method: 'DELETE'
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            showToast(`✅ Bus #${busNo} deleted successfully!`, 'success');
-            loadManageBusesTable();
-            loadAdminDashboard();
-            loadBuses();
-        } else {
-            showToast(result.error || 'Cannot delete bus with active bookings', 'error');
-        }
-    } catch (error) {
-        showToast('Network error', 'error');
-    }
-}
-
-        async function loadAdminDashboard() {
-    try {
-        const [busesRes, bookingsRes] = await Promise.all([
-            fetch('/api/buses'),
-            fetch('/api/bookings')
-        ]);
-        const buses = await busesRes.json();
-        const bookings = await bookingsRes.json();
-        
-        const confirmed = bookings.filter(b => b.status === 'CONFIRMED');
-        
-        // FIX: Convert to numbers before adding
-        const revenue = confirmed.reduce((sum, b) => {
-            return sum + parseFloat(b.total_amount || 0);
-        }, 0);
-        
-        // Format revenue with 2 decimal places
-        const formattedRevenue = revenue.toFixed(2);
-        
-        document.getElementById('adminTotalBuses').textContent = buses.length;
-        document.getElementById('adminTotalBookings').textContent = bookings.length;
-        document.getElementById('adminTotalRevenue').textContent = 'BDT ' + formattedRevenue;
-        
-        // Optional: Display active bookings count
-        const activeBookingsEl = document.getElementById('adminActiveBookings');
-        if (activeBookingsEl) {
-            activeBookingsEl.textContent = confirmed.length;
-        }
-        
-    async function loadAdminDashboard() {
-    try {
-        const [busesRes, bookingsRes] = await Promise.all([
-            fetch('/api/buses'),
-            fetch('/api/bookings')
-        ]);
-        const buses = await busesRes.json();
-        const bookings = await bookingsRes.json();
-        
-        const confirmed = bookings.filter(b => b.status === 'CONFIRMED');
-        const revenue = confirmed.reduce((sum, b) => sum + parseFloat(b.total_amount || 0), 0);
-        const formattedRevenue = revenue.toFixed(2);
-        
-        document.getElementById('adminTotalBuses').textContent = buses.length;
-        document.getElementById('adminTotalBookings').textContent = bookings.length;
-        document.getElementById('adminTotalRevenue').textContent = 'BDT ' + formattedRevenue;
-        
-        const activeBookingsEl = document.getElementById('adminActiveBookings');
-        if (activeBookingsEl) {
-            activeBookingsEl.textContent = confirmed.length;
-        }
-        
-        // Load the manage buses table
-        loadManageBusesTable();
-        
-    } catch (error) {
-        console.error('Error loading dashboard:', error);
-    }
-}
-        
-    } catch (error) {
-        console.error('Error loading dashboard:', error);
-    }
-}
-        
-        async function addNewBus() {
-            const data = {
-                bus_no: parseInt(document.getElementById('newBusNo').value),
-                bus_name: document.getElementById('newBusName').value,
-                route: document.getElementById('newBusRoute').value,
-                bus_type: document.getElementById('newBusType').value,
-                total_seats: parseInt(document.getElementById('newBusSeats').value),
-                rent: parseInt(document.getElementById('newBusRent').value)
-            };
-            
-            try {
-                const res = await fetch('/api/buses', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
-                });
-                if (res.ok) {
-                    showToast('Bus added', 'success');
-                    loadAdminDashboard();
-                    loadBuses();
-                }
-            } catch (error) {
-                showToast('Error adding bus', 'error');
-            }
-        }
-        
         function adminLogout() {
             adminLoggedIn = false;
             document.getElementById('adminLoginForm').style.display = 'block';
             document.getElementById('adminDashboard').style.display = 'none';
         }
-        
-        function showToast(message, type) {
-            const colors = {success: 'bg-success', error: 'bg-danger', warning: 'bg-warning'};
-            const toast = document.createElement('div');
-            toast.className = `toast show ${colors[type]} text-white`;
-            toast.style.marginBottom = '10px';
-            toast.innerHTML = `<div class="toast-body">${message}</div>`;
-            document.getElementById('toastContainer').appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+
+        function loadAdminDashboard() {
+            document.getElementById('adminTotalBuses').textContent = buses.length;
+            const confirmed = bookings.filter(b => b.status === 'CONFIRMED');
+            document.getElementById('adminTotalBookings').textContent = bookings.length;
+            const revenue = confirmed.reduce((sum, b) => sum + parseFloat(b.total_amount || 0), 0);
+            document.getElementById('adminTotalRevenue').textContent = 'BDT ' + revenue.toFixed(0);
+
+            loadManageBusesTable();
         }
-        
-        loadStats();
+
+        function loadManageBusesTable() {
+            const tbody = document.getElementById('manageBusesTable');
+            tbody.innerHTML = buses.map(bus => `
+                <tr>
+                    <td><strong>#${bus.bus_no}</strong></td>
+                    <td>${bus.bus_name}</td>
+                    <td>${bus.route}</td>
+                    <td><span class="badge ${bus.bus_type === 'AC' ? 'bg-success' : 'bg-primary'}">${bus.bus_type}</span></td>
+                    <td><strong>${bus.available_seats}</strong> / ${bus.total_seats}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="resetSingleBus(${bus.bus_no})" ${bus.available_seats === bus.total_seats ? 'disabled' : ''}>
+                            Reset Seats
+                        </button>
+                        <button class="btn btn-sm btn-danger ms-1" onclick="deleteBus(${bus.bus_no})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetSingleBus(busNo) {
+            if (!confirm('Reset available seats to full?')) return;
+            const bus = buses.find(b => b.bus_no === busNo);
+            if (bus) {
+                bus.available_seats = bus.total_seats;
+                saveData();
+                showToast(`Bus #${busNo} reset successfully`, 'success');
+                loadManageBusesTable();
+                loadBuses();
+            }
+        }
+
+        function deleteBus(busNo) {
+            if (!confirm(`Delete Bus #${busNo}?`)) return;
+            const hasActive = bookings.some(b => b.bus_no === busNo && b.status === 'CONFIRMED');
+            if (hasActive) {
+                showToast('Cannot delete bus with active bookings', 'error');
+                return;
+            }
+            buses = buses.filter(b => b.bus_no !== busNo);
+            saveData();
+            showToast(`Bus #${busNo} deleted`, 'success');
+            loadManageBusesTable();
+            loadBuses();
+        }
+
+        function addNewBus() {
+            const busNo = parseInt(document.getElementById('newBusNo').value);
+            if (!busNo || buses.some(b => b.bus_no === busNo)) {
+                showToast('Invalid or duplicate Bus Number', 'error');
+                return;
+            }
+
+            const newBus = {
+                bus_no: busNo,
+                bus_name: document.getElementById('newBusName').value || 'New Bus',
+                route: document.getElementById('newBusRoute').value || 'Unknown Route',
+                bus_type: document.getElementById('newBusType').value,
+                total_seats: parseInt(document.getElementById('newBusSeats').value) || 40,
+                available_seats: parseInt(document.getElementById('newBusSeats').value) || 40,
+                rent: parseInt(document.getElementById('newBusRent').value) || 800
+            };
+
+            buses.push(newBus);
+            saveData();
+            showToast('New bus added successfully', 'success');
+            loadManageBusesTable();
+            loadBuses();
+        }
     </script>
 </body>
 </html>
